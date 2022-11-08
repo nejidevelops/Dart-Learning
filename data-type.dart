@@ -1,4 +1,14 @@
+void main() {
 // integers
-int age = 24;
+  int age = 24;
 
-double salary = 432000.50;
+  double salary = 432000.50;
+
+  print(age);
+  print(salary);
+
+//
+  String name = "Bofulo";
+
+  print(name);
+}
