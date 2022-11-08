@@ -11,4 +11,16 @@ void main() {
   String name = "Bofulo";
 
   print(name);
+
+// boolean
+
+  bool isBofulo = true;
+
+  print(isBofulo);
+
+// List also => array
+
+  List guys = ['Shifu', 'Tosh', 'Zebby', 'Cafu'];
+
+  print(guys);
 }
