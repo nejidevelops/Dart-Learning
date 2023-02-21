@@ -24,3 +24,32 @@ void main() {
 
   print(guys);
 }
+
+
+// functions
+
+// void types
+
+void greet(){
+  print('Hello welcome to Dart Learning');
+}
+
+// Functions with a return type
+String greeting(){
+  return 'Hello';
+}
+
+// functions that take in mandatory parameters
+void greetings(String greeting){
+  print(greeting);
+}
+
+// function that take in optional parameters
+void details([int telephone = 0712345678]){
+
+}
+
+// functions that in optional named parameters
+void details2([String firstName = 'Bofulo', String lastname='Newton']){
+
+}
