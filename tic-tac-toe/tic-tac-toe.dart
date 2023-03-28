@@ -1,5 +1,4 @@
-import "dart:io";
-import "dart:core";
+import 'dart:io';
 
 bool winner = false;
 bool isXturn = true;
@@ -11,16 +10,15 @@ List<String> values = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 // |7|8|9|
 List<String> combinations = ['012', '048', '036', '147', '246', '345', '678'];
 
-bool checkCombination(String combination, String checkFor){
-  List<int> numbers = combination.split('').map((item){
+bool checkCombination(String combination, String checkFor) {
+  List<int> numbers = combination.split('').map((item) {
     return int.parse(item);
   }).toList();
   bool match = false;
-  for (final item in numbers){
-    if (values[item] == checkFor){
+  for (final item in numbers) {
+    if (values[item] == checkFor) {
       match = true;
-    }
-    else {
+    } else {
       match = false;
       break;
     }
@@ -28,10 +26,10 @@ bool checkCombination(String combination, String checkFor){
   return match;
 }
 
-void checkWinner(player){
-  for(final item in combinations){
+void checkWinner(player) {
+  for (final item in combinations) {
     bool combinationValidity = checkCombination(item, player);
-    if(combinationValidity == true){
+    if (combinationValidity == true) {
       print('$player WON!!!');
       winner = true;
       break;
@@ -39,7 +37,7 @@ void checkWinner(player){
   }
 }
 
-void generateBoard(){
+void generateBoard() {
   print('   |   |   ');
   print(' ${values[0]} | ${values[1]} | ${values[2]}');
   print('   |   |   ');
@@ -49,26 +47,44 @@ void generateBoard(){
   print('   |   |   ');
 }
 
-void getnextCharacter(){
+void getnextCharacter() {
   print('Choose number for ${isXturn == true ? "X" : "O"}');
-  int number = int.parse(stdin.readLineSync());
-  values[number - 1] = isXturn ? 'X' : 'O';
-  isXturn = !isXturn;
-  moveCount++;
-  if(moveCount == 9){
-    winner = true;
-    print("DRAW!");
-  }
-  else {
+  int number = int.parse(stdin.readLineSync()!);
+  if (values[number - 1] == 'X' || values[number - 1] == 'O') {
+    print('This position is already taken!');
+    getnextCharacter();
+  } else {
+    values[number - 1] = isXturn ? 'X' : 'O';
+    isXturn = !isXturn;
+    moveCount++;
     clearScreen();
     generateBoard();
 
-  checkWinner('X');
-  checkWinner('O');
+    checkWinner('X');
+    checkWinner('O');
 
-  if(winner == false) getnextCharacter();
+    if (winner == false) {
+      if (moveCount == 9) {
+        winner = true;
+        print("DRAW!");
+      } else {
+        getnextCharacter();
+      }
+    }
+  }
 }
-void main(){
+
+void main() {
   generateBoard();
   getnextCharacter();
+}
+
+void clearScreen() {
+  if (Platform.isWindows) {
+    // Windows
+    print(Process.runSync('cls', [], runInShell: true).stdout);
+  } else {
+    // Linux, macOS, etc.
+    print(Process.runSync('clear', [], runInShell: true).stdout);
+  }
 }
