@@ -21,18 +21,23 @@ void main(){
   switch(operand){
     case "+":
       result = num1 + num2;
+      print("${num1} ${operand} ${num2} = ${result}");
       break;
     case "-":
       result = num1 - num2;
+      print("${num1} ${operand} ${num2} = ${result}");
       break;
     case "*":
       result = num1 * num2;
+      print("${num1} ${operand} ${num2} = ${result}");
       break;
     case "/":
       result = num1 / num2;
+      print("${num1} ${operand} ${num2} = ${result}");
       break;
     default:
       print("Invalid input");
       break;
   }
+  // print("${num1} ${operand} ${num2} = ${result}");
 }
